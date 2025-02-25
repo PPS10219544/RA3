@@ -18,7 +18,7 @@ Antes de comenzar, previamente debemos haber configurado:
 - **Apache corriendo en un contenedor Docker**
 
 Consultamos el ID del contenedor de Apache:
-![ID del contenedor de Apache](assets/PPS_1.png) 
+![ID del contenedor de Apache](assets/PPS_Dockerps.png) 
 
 E inicializamos el terminal dentro del contenedor, donde vamos a realizar la configuración en su totalidad.
 ```bash
