@@ -20,26 +20,29 @@ Antes de comenzar, previamente debemos haber configurado:
 Consultamos el ID del contenedor de Apache:
 ![ID del contenedor de Apache](assets/PPS_1.png) 
 
-E inicializamos el terminal dentro del contenedor:
+E inicializamos el terminal dentro del contenedor, donde vamos a realizar la configuración en su totalidad.
 ```bash
 sudo docker exec -it 41f5 /bin/bash
 ```
 
-
+---
 
 ## 🔒 3. Implementación de HSTS (Strict Transport Security)
 
 ### 📌 ¿Qué es HSTS?
-HSTS (**HTTP Strict Transport Security**) obliga a los navegadores a usar **solo HTTPS**, protegiendo contra ataques MITM.
+
+**HSTS** (HTTP Strict Transport Security), es una política de seguridad web establecida para evitar ataques que puedan interceptar comunicaciones, cookies, etc. Según este mecanismo un servidor web declara que los agentes de usuario compatibles (es decir, los navegadores), solamente pueden interactuar con ellos mediante conexiones HTTP seguras (es decir, en HTTP sobre TLS/SSL1). HSTS es un estándar del IETF y se especifica en el RFC 6797.
+
+La política HSTS es comunicada por el servidor al navegador a través de un campo de la cabecera HTTP de respuesta denominado “Strict Transport-Security”. La política HSTS especifica un período de tiempo durante el cual el agente de usuario deberá acceder al servidor sólo en forma segura.
 
 ### **1️⃣ Habilitar el módulo `headers` en Apache**
 ```bash
-sudo a2enmod headers
+a2enmod headers
 ```
 
 ### **2️⃣ Editar la configuración de Apache**
 ```bash
-sudo nano /etc/apache2/conf-available/security.conf
+nano /etc/apache2/conf-available/security.conf
 ```
 
 Añadir la siguiente línea para habilitar HSTS:
@@ -55,8 +58,8 @@ Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains
 
 ### **3️⃣ Activar la configuración y reiniciar Apache**
 ```bash
-sudo a2enconf security
-sudo systemctl restart apache2
+a2enconf security
+service apache2 reload
 ```
 
 ### **4️⃣ Verificar que HSTS está activo**
@@ -78,7 +81,7 @@ CSP (**Content Security Policy**) previene **XSS y ejecución de scripts malicio
 
 ### **1️⃣ Editar la configuración de Apache**
 ```bash
-sudo nano /etc/apache2/conf-available/security.conf
+nano /etc/apache2/conf-available/security.conf
 ```
 
 Añadir la siguiente línea:
@@ -93,7 +96,7 @@ Header set Content-Security-Policy "default-src 'self'; script-src 'self' https:
 
 ### **2️⃣ Aplicar la configuración**
 ```bash
-sudo systemctl restart apache2
+service apache2 reload
 ```
 
 ### **3️⃣ Verificar que CSP está activo**
