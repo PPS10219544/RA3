@@ -91,17 +91,29 @@ Añadir la siguiente línea:
 ```apache
 Header set Content-Security-Policy "default-src 'self'; script-src 'self' https://apis.google.com"
 ```
+![Activar headers](assets/PPS_HSTSv2.png) 
 
 ### 📌 Explicación de los parámetros:
 - **`default-src 'self'`** → Solo permite cargar contenido del mismo dominio.
 - **`script-src 'self' https://apis.google.com`** → Solo permite scripts del dominio y Google APIs.
 
-### **2️⃣ Aplicar la configuración**
+Ahora,2️⃣ editar también apache2.conf:
+```bash
+nano /etc/apache2/apache2.conf
+```
+
+Añadir nuevamente la misma política de seguridad:
+```apache
+Header set Content-Security-Policy "default-src 'self'; script-src 'self'"
+```
+![Activar headers](assets/PPS_CSP.png) 
+
+### **3️⃣ Aplicar la configuración**
 ```bash
 service apache2 reload
 ```
 
-### **3️⃣ Verificar que CSP está activo**
+### **4️⃣ Verificar que CSP está activo**
 ```bash
 curl -I https://localhost:8443
 ```
