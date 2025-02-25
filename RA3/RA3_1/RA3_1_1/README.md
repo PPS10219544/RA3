@@ -77,7 +77,8 @@ Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
 ## 🛡️ 4. Implementación de CSP (Content Security Policy)
 
 ### 📌 ¿Qué es CSP?
-CSP (**Content Security Policy**) previene **XSS y ejecución de scripts maliciosos** restringiendo los orígenes de los recursos.
+
+CSP (**Content Security Policy**), es una capa de seguridad adicional que ayuda a prevenir y mitigar algunos tipos de ataque, incluyendo Cross Site Scripting ( XSS ) y ataques de inyección de datos. Estos ataques son usados con diversos propósitos, desde robar información hasta desfiguración de sitios o distribución de malware.
 
 ### **1️⃣ Editar la configuración de Apache**
 ```bash
