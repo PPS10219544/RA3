@@ -49,7 +49,7 @@ nano /etc/apache2/conf-available/security.conf
 Añadir la siguiente línea para habilitar HSTS:
 
 ```apache
-Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains"
 ```
 ![Archivo security.conf](assets/PPS_HSTSv2.png) 
 
