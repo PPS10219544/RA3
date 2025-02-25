@@ -39,6 +39,7 @@ La política HSTS es comunicada por el servidor al navegador a través de un cam
 ```bash
 a2enmod headers
 ```
+![Activar headers](assets/PPS_HSTS.png) 
 
 ### **2️⃣ Editar la configuración de Apache**
 ```bash
@@ -50,11 +51,11 @@ Añadir la siguiente línea para habilitar HSTS:
 ```apache
 Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
 ```
+![Archivo security.conf](assets/PPS_HSTSv2.png) 
 
 ### 📌 Explicación de los parámetros:
 - **`max-age=63072000`** → HTTPS obligatorio durante **2 años**.
 - **`includeSubDomains`** → Aplica HSTS a **todos los subdominios**.
-- **`preload`** → Permite que el sitio se agregue a la lista **HSTS Preload List**.
 
 ### **3️⃣ Activar la configuración y reiniciar Apache**
 ```bash
