@@ -194,7 +194,7 @@ Content-Security-Policy: default-src 'self'; script-src 'self' https://apis.goog
 
 ---
 
-## 📌 7. Subir la imagen a Docker Hub
+## 📌 7. Imagen de Docker HSTS y CSP
 
 ```bash
 sudo docker ps
