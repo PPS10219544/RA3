@@ -61,13 +61,27 @@ service apache2 reload
 
 ## 📌 3. Imagen de Docker WAF
 
+Una vez configurado y probado nuestro WAF con ModSecurity, podemos guardar la imagen y subirla a Docker Hub para reutilizarla en otros entornos.
+Primero, identificamos el ID del contenedor donde hemos configurado Apache con ModSecurity.
 ```bash
 sudo docker ps
+```
+Hacemos un commit del contenedor en una nueva imagen.
+```bash
 sudo docker commit apache_server pps10219544/imagen_docker:v2
+```
+
+Esta imagen podemos subirla a Docker Hub, para ello:
+- Iniciamos sesión en Docker Hub:
+```bash
+sudo docker login
+```
+- Subimos la imagen:
+```bash
 sudo docker push pps10219544/imagen_docker:v2
 ```
 
-Si deseamos descargarnos la imagen en otro sistema:
+Además, si deseamos descargarnos la imagen en otro sistema:
 ```bash
 sudo docker pull pps10219544/imagen_docker:v2
 sudo docker run -d -p 8080:80 -p 8443:443 --name apache_server imagen_docker
