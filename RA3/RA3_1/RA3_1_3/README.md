@@ -76,7 +76,8 @@ SecRule ARGS:testparam "@contains test" "id:1234,deny,status:403,msg:'Cazado por
 ![OWASP 000-default](assets/PPS_OWASP-000-default.png)  
 
 Guardamos y salimos.  
-Reiniciamos Apache para aplicar los cambios:
+
+### **5️⃣ Reiniciamos Apache para aplicar los cambios**
 ```bash
 service apache2 reload
 ```
