@@ -132,11 +132,11 @@ sudo docker run -d -p 8080:80 -p 8443:443 --name apache_server imagen_docker
 
 ## ✅ 5. Conclusión
 
-Con esta configuración, hemos logrado:
-✔ **Proteger Apache contra ataques de denegación de servicio (DoS).**
-✔ **Bloquear direcciones IP que superen los umbrales configurados.**
+Con esta configuración, hemos logrado:  
+✔ **Proteger Apache contra ataques de denegación de servicio (DoS).**  
+✔ **Bloquear direcciones IP que superen los umbrales configurados.**  
 ✔ **Monitorear intentos de ataque mediante logs en `/var/log/mod_evasive`.**  
-✔ **Creado una imagen Docker con Apache seguro y listo para desplegar en cualquier entorno.**
+✔ **Creado una imagen Docker con Apache seguro y listo para desplegar en cualquier entorno.**  
 
 🔹 **Recomendaciones adicionales:**
 - **Ajustar los umbrales de mod_evasive** según la carga esperada del servidor.
