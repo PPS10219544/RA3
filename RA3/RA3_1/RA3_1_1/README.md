@@ -170,7 +170,11 @@ Header always set Content-Security-Policy "default-src 'self'; script-src 'self'
 service apache2 reload
 ```
 
-### **4️⃣ Verificar que CSP está activo**
+---
+
+## 🛠️ 6. Validación Final
+
+Para comprobar que **Apache está bien configurado y activo con HSTS y CSP**, usa:
 ```bash
 curl -I http://www.midominioseguro.com
 ```
@@ -178,31 +182,20 @@ curl -I http://www.midominioseguro.com
 
 ---
 
-## 🛠️ 6. Validación Final
-
-Para comprobar que **Apache está bien configurado con HSTS y CSP**, usa:
-
-```bash
-curl -I https://localhost:8443
-```
-
-Salida esperada:
-```
-Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-Content-Security-Policy: default-src 'self'; script-src 'self' https://apis.google.com
-```
-
----
-
 ## 📌 7. Imagen de Docker HSTS y CSP
+Una vez configurado y probado nuestro WAF con ModSecurity, podemos guardar la imagen y subirla a Docker Hub para reutilizarla en otros entornos.
 
+Primero, identificamos el ID del contenedor donde hemos configurado Apache con ModSecurity.
+Hacemos un commit del contenedor en una nueva imagen.
 ```bash
 sudo docker ps
 sudo docker commit apache_server pps10219544/imagen_docker:v1
 sudo docker push pps10219544/imagen_docker:v1
 ```
 
-Si deseamos descargarnos la imagen en otro sistema:
+Antes de subir la imagen, iniciamos sesión en Docker Hub:
+
+Si deseamos descargarnos la imagen en otro sistema e inicializar este contenedor:
 ```bash
 sudo docker pull pps10219544/imagen_docker:v1
 sudo docker run -d -p 8080:80 -p 8443:443 --name apache_server imagen_docker
