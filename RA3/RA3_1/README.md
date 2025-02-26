@@ -1,26 +1,10 @@
 # RA3_1
 
-Introduction [INTRO](URL_TASKS) :
+En este repositorio se documenta la implementación de **Apache Hardening**, incluyendo **CSP** (Content Security Policy), Web Application Firewall (**WAF**), **OWASP** ModSecurity, prevención de ataques **DDoS**.
 
-# Tasks
+# Tareas
 
-* [TASK_1](#URL_TASK_1): XXX
-* [TASK_2](#URL_TASK_2): XXX
-
-# Task_1
-
-Intro...
-
-![IMG](URL_IMG)
-
-Example code:
-
-```
-$ git clone https://github.com/openssh/openssh-portable
-$ patch -p1 < ~/path/to/openssh.patch
-$ autoreconf
-$ ./configure
-$ make
-```
-
-# Task_2
+* [RA3_1_1](RA3/RA3_1/RA3_1_1): CSP
+* [RA3_1_2](RA3/RA3_1/RA3_1_2): WAF (Web Application Firewall)
+* [RA3_1_3](RA3/RA3_1/RA3_1_3): OWASP
+* [RA3_1_4](RA3/RA3_1/RA3_1_4): Evitar Ataques DDOS
