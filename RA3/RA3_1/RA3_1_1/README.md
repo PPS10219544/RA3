@@ -183,19 +183,28 @@ curl -I http://www.midominioseguro.com
 ---
 
 ## 📌 7. Imagen de Docker HSTS y CSP
-Una vez configurado y probado nuestro WAF con ModSecurity, podemos guardar la imagen y subirla a Docker Hub para reutilizarla en otros entornos.
 
-Primero, identificamos el ID del contenedor donde hemos configurado Apache con ModSecurity.
-Hacemos un commit del contenedor en una nueva imagen.
+Una vez configurado y probado nuestro servidor Apache con HSTS (Strict Transport Security) y CSP (Content Security Policy), podemos guardar la imagen y subirla a Docker Hub para reutilizarla en otros entornos.
+Primero, para asegurarnos de que nuestro contenedor Apache con HSTS y CSP está corriendo correctamente, listamos los contenedores activos:
 ```bash
 sudo docker ps
+```
+Hacemos un commit del contenedor en una nueva imagen.
+```bash
 sudo docker commit apache_server pps10219544/imagen_docker:v1
+```
+  
+Esta imagen podemos subirla a Docker Hub, para ello:
+- Iniciamos sesión en Docker Hub:
+```bash
+sudo docker login
+```
+- Subimos la imagen:
+```bash
 sudo docker push pps10219544/imagen_docker:v1
 ```
-
-Antes de subir la imagen, iniciamos sesión en Docker Hub:
-
-Si deseamos descargarnos la imagen en otro sistema e inicializar este contenedor:
+  
+Además, si deseamos descargarnos la imagen en otro sistema:
 ```bash
 sudo docker pull pps10219544/imagen_docker:v1
 sudo docker run -d -p 8080:80 -p 8443:443 --name apache_server imagen_docker
@@ -209,4 +218,5 @@ Este Hardening de Apache con HSTS y CSP proporciona una mayor seguridad para nue
 ✔ **Forzar HTTPS** con **HSTS** para evitar ataques MITM.  
 ✔ **Restringir carga de contenido externo** y prevenir ataques **XSS** mediante **CSP**.  
 ✔ **Asegurar la identidad del servidor** con un **Certificado Digital SSL/TLS**.  
-✔ **Reducir la superficie de ataque** configurando políticas de seguridad más estrictas en **Apache**.  
+✔ **Reducir la superficie de ataque** configurando políticas de seguridad más estrictas en **Apache**. 
+✔ **Creado una imagen Docker con Apache seguro y listo para desplegar en cualquier entorno.**
