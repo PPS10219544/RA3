@@ -94,13 +94,18 @@ Durante la ejecución del comando, introducimos los datos solicitados.
 ```bash
 nano /etc/apache2/sites-available/default-ssl.conf
 ```
-Y agregamos la siguiente configuración dentro de `<VirtualHost *:443>`:
+Agregamos la siguiente configuración dentro de `<VirtualHost *:80>`:
+```bash
+ServerName www.midominioseguro.com
+Redirect permanent / https://www.midominioseguro.com/
+```
+Y tammbién agregamos dentro de `<VirtualHost *:443>` esta configuración:
 ```bash
 SSLEngine on
 SSLCertificateFile /etc/apache2/ssl/apache.crt
 SSLCertificateKeyFile /etc/apache2/ssl/apache.key
 ```
-![Generar certificado](assets/PPS_Certificadov2.png) 
+![Generar certificado](assets/PPS_Certificado-default.png) 
 
 ### **4️⃣ Configurar /etc/hosts**
 ```bash
