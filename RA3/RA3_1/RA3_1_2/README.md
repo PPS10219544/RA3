@@ -48,7 +48,7 @@ Y la cambiamos a:
 ```apache
 SecRuleEngine On
 ```
-![ID del contenedor de Apache](assets/PPS_Dockerps.png) 
+![Archivo modsecurity](assets/PPS_WAF.png) 
 
 ---
 
