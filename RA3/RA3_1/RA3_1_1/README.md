@@ -60,22 +60,75 @@ Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains
 ### **3️⃣ Activar la configuración y reiniciar Apache**
 ```bash
 a2enconf security
+
 service apache2 reload
 ```
 
-### **4️⃣ Verificar que HSTS está activo**
-```bash
-curl -I https://localhost:8443
-```
-
-Salida esperada:
-```
-Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-```
+### **4️⃣ Antes de verificar que HSTS está activo, debemos certificado nuestro dominio**
+Para garantizar que el tráfico cifrado es confiable, necesitamos configurar un certificado digital para nuestro servidor Apache.
 
 ---
 
-## 🛡️ 4. Implementación de CSP (Content Security Policy)
+## 🔒 4. Implementación de un certificado digital en Apache
+
+### 📌 ¿Qué es un certificado digital?
+
+Un **certificado digital** es un documento electrónico que garantiza la identidad de un servidor web y permite establecer conexiones cifradas mediante **SSL/TLS**. Esto asegura que los datos transmitidos entre el servidor y los usuarios sean seguros y no puedan ser interceptados por terceros.
+
+### **1️⃣ Activar el módulo SSL en Apache**
+```bash
+a2enmod ssl
+```
+
+### **2️⃣ Crear un Certificado SSL Auto-firmado**
+Generamos un certificado autofirmado válido por 1 año (365 días) con clave de 2048 bits:
+```bash
+mkdir /etc/apache2/ssl
+
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
+```
+Durante la ejecución del comando, introducimos los datos solicitados.
+![Generar certificado](assets/PPS_Certificadov1.png) 
+
+### **3️⃣ Configurar Apache para usar el Certificado SSL**
+```bash
+nano /etc/apache2/sites-available/default-ssl.conf
+```
+Y agregamos la siguiente configuración dentro de `<VirtualHost *:443>`:
+```bash
+SSLEngine on
+SSLCertificateFile /etc/apache2/ssl/apache.crt
+SSLCertificateKeyFile /etc/apache2/ssl/apache.key
+```
+![Generar certificado](assets/PPS_Certificadov2.png) 
+
+### **4️⃣ Configurar /etc/hosts**
+```bash
+nano /etc/hosts
+```
+![Generar certificado](assets/PPS_etc-hosts.png) 
+
+### **5️⃣ Activar el sitio SSL y reiniciar Apache**
+```bash
+a2ensite default-ssl.conf
+
+service apache2 reload
+
+apache2ctl configtest
+```
+![Generar certificado](assets/PPS_Certificadov3.png) 
+
+### **6️⃣ Comprobar el Certificado SSL**
+
+Para verificar que la conexión SSL está activa y el certificado funciona correctamente:
+```bash
+curl -I -k https://www.midominioseguro.com
+```
+![Activar headers](assets/PPS_CertificadoOK.png) 
+
+---
+
+## 🛡️ 5. Implementación de CSP (Content Security Policy)
 
 ### 📌 ¿Qué es CSP?
 
@@ -89,15 +142,14 @@ nano /etc/apache2/conf-available/security.conf
 Añadir la siguiente línea:
 
 ```apache
-Header set Content-Security-Policy "default-src 'self'; script-src 'self' https://apis.google.com"
+Header set Content-Security-Policy "default-src 'self'; script-src 'self'"
 ```
 ![Activar headers](assets/PPS_HSTSv2.png) 
 
 ### 📌 Explicación de los parámetros:
 - **`default-src 'self'`** → Solo permite cargar contenido del mismo dominio.
-- **`script-src 'self' https://apis.google.com`** → Solo permite scripts del dominio y Google APIs.
 
-Ahora,2️⃣ editar también apache2.conf:
+Además, editar también el archivo apache2.conf:
 ```bash
 nano /etc/apache2/apache2.conf
 ```
@@ -125,7 +177,7 @@ Content-Security-Policy: default-src 'self'; script-src 'self' https://apis.goog
 
 ---
 
-## 🛠️ 5. Validación Final
+## 🛠️ 6. Validación Final
 
 Para comprobar que **Apache está bien configurado con HSTS y CSP**, usa:
 
@@ -141,7 +193,7 @@ Content-Security-Policy: default-src 'self'; script-src 'self' https://apis.goog
 
 ---
 
-## 📌 6. Subir la imagen a Docker Hub
+## 📌 7. Subir la imagen a Docker Hub
 
 ```bash
 sudo docker ps
@@ -157,8 +209,15 @@ sudo docker run -d -p 8080:80 -p 8443:443 --name apache_server imagen_docker
 
 ---
 
-## 📌 7. Conclusión
+## 📌 8. Conclusión
 
 Este hardening de Apache con **HSTS y CSP** mejora la seguridad del servidor web al:
 ✔ **Forzar HTTPS** para evitar ataques MITM.  
 ✔ **Restringir carga de contenido externo** y prevenir ataques XSS.  
+
+
+# 🛡️ Apache Hardening con HSTS y CSP
+
+Este repositorio documenta la implementación de **Apache Hardening** utilizando **HSTS (Strict Transport Security)** y **CSP (Content Security Policy)** en un contenedor Docker.
+
+---
