@@ -123,10 +123,10 @@ sudo docker run -d -p 8080:80 -p 8443:443 --name apache_server imagen_docker
 
 ## ✅ 5. Conclusión
 
-Con esta configuración, hemos logrado:
-✔ **Proteger Apache contra ataques web comunes** como XSS, SQL Injection y RCE.
-✔ **Implementar OWASP Core Rule Set (CRS) en ModSecurity**.
-✔ **Bloquear solicitudes maliciosas antes de que lleguen a la aplicación web**.
+Con esta configuración, hemos logrado:  
+✔ **Proteger Apache contra ataques web comunes** como XSS, SQL Injection y RCE.  
+✔ **Implementar OWASP Core Rule Set (CRS) en ModSecurity**.  
+✔ **Bloquear solicitudes maliciosas antes de que lleguen a la aplicación web**.  
 
 🔹 **Recomendaciones adicionales:**
 - **Ajustar las reglas de OWASP CRS** según las necesidades de la aplicación.
