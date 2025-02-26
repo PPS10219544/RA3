@@ -50,7 +50,7 @@ Añadimos la siguiente configuración:
     DOSWhitelist 127.0.0.1
 </IfModule>
 ```
-![Archivo modsecurity](assets/PPS_DDSOS-evasive.png)  
+![Archivo modsecurity](assets/PPS_DDOS-evasive.png)  
 
 Guardamos los cambios y salimos.
 
@@ -66,7 +66,7 @@ Y Ejecutamos el siguiente comando para comprobar que mod_evasive está cargado:
 ```bash
 apachectl -M | grep evasive
 ```
-![Archivo modsecurity](assets/PPS_DDSOS-evasive2.png)  
+![Archivo modsecurity](assets/PPS_DDOS-evasive2.png)  
 
 ### **4️⃣ Crear el directorio de logs**
 
@@ -94,6 +94,7 @@ ab -n 1000 -c 50 http://localhost:8080/
 - **`-c 50`** → Número de solicitudes concurrentes.
 
 Si la configuración de mod_evasive es correcta, Apache empezará a rechazar solicitudes después de superar el umbral configurado, devolviendo errores **403 Forbidden**.
+![Archivo modsecurity](assets/PPS_DDOS.png)  
 
 ---
 
