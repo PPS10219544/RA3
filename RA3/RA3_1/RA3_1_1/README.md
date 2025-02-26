@@ -209,6 +209,6 @@ sudo docker run -d -p 8080:80 -p 8443:443 --name apache_server imagen_docker
 
 Este Hardening de Apache con HSTS y CSP proporciona una mayor seguridad para nuestro servidor web. Con esta configuración, logramos:
 ✔ **Forzar HTTPS** con **HSTS** para evitar ataques MITM.  
-✔ **Restringir carga de contenido externo** y prevenir ataques **XSS** mediante **CSP**.
-✔ **Asegurar la identidad del servidor** con un **Certificado Digital SSL/TLS**.
-✔ **Reducir la superficie de ataque** configurando políticas de seguridad más estrictas en **Apache**.
+✔ **Restringir carga de contenido externo** y prevenir ataques **XSS** mediante **CSP**.  
+✔ **Asegurar la identidad del servidor** con un **Certificado Digital SSL/TLS**.  
+✔ **Reducir la superficie de ataque** configurando políticas de seguridad más estrictas en **Apache**.  
