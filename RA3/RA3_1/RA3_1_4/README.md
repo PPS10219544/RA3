@@ -45,7 +45,8 @@ Añadimos la siguiente configuración:
     DOSPageInterval 1
     DOSSiteInterval 1
     DOSBlockingPeriod 10
-    DOSEmailNotify admin@tu-dominio.com
+
+    DOSEmailNotify admin@midominioseguro.com
     DOSLogDir "/var/log/mod_evasive"
     DOSWhitelist 127.0.0.1
 </IfModule>
