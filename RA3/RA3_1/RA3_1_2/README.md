@@ -50,9 +50,7 @@ SecRuleEngine On
 ```
 ![Archivo modsecurity](assets/PPS_WAF.png) 
 
----
-
-### **4️⃣ Aplicar los cambios sobre el servidor Apache, reiniciamos el servicio:**
+### **5️⃣ Aplicar los cambios sobre el servidor Apache, reiniciamos el servicio:**
 ```bash
 service apache2 reload
 ```
