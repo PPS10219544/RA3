@@ -58,7 +58,8 @@ Añadimos lo siguiente:
     Include /etc/modsecurity/rules/*.conf
 </IfModule>
 ```
-![OWASP security2](assets/PPS_OWASP-security2.png)
+![OWASP security2](assets/PPS_OWASP-security2.png)  
+
 Guardamos y salimos.
 
 ### **4️⃣ ModSecurity con reglas personalizadas**
