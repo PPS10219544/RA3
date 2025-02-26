@@ -156,7 +156,7 @@ nano /etc/apache2/apache2.conf
 
 Añadir nuevamente la misma política de seguridad:
 ```apache
-Header set Content-Security-Policy "default-src 'self'; script-src 'self'"
+Header always set Content-Security-Policy "default-src 'self'; script-src 'self'"
 ```
 ![Activar headers](assets/PPS_CSP.png) 
 
@@ -167,13 +167,9 @@ service apache2 reload
 
 ### **4️⃣ Verificar que CSP está activo**
 ```bash
-curl -I https://localhost:8443
+curl -I http://www.midominioseguro.com
 ```
-
-Salida esperada:
-```
-Content-Security-Policy: default-src 'self'; script-src 'self' https://apis.google.com
-```
+![Activar headers](assets/PPS_CSP2.png) 
 
 ---
 
