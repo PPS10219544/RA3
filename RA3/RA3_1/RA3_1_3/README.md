@@ -72,7 +72,8 @@ Añadimos la siguiente línea dentro de la configuración:
 SecRuleEngine On
 SecRule ARGS:testparam "@contains test" "id:1234,deny,status:403,msg:'Cazado por Ciberseguridad'
 ```
-![OWASP 000-default](assets/PPS_OWASP-000-default.png)
+![OWASP 000-default](assets/PPS_OWASP-000-default.png)  
+
 Guardamos y salimos.
 Reiniciamos Apache para aplicar los cambios:
 ```bash
