@@ -64,7 +64,7 @@ a2enconf security
 service apache2 reload
 ```
 
-### **4️⃣ Antes de verificar que HSTS está activo, debemos certificado nuestro dominio**
+### **4️⃣ Antes de verificar que HSTS está activo, debemos certificar nuestro dominio**
 Para garantizar que el tráfico cifrado es confiable, necesitamos configurar un certificado digital para nuestro servidor Apache.
 
 ---
