@@ -127,7 +127,8 @@ Con esta configuración, hemos logrado:
 ✔ **Proteger Apache contra ataques web comunes** como XSS, SQL Injection y RCE.  
 ✔ **Implementar OWASP Core Rule Set (CRS) en ModSecurity**.  
 ✔ **Bloquear solicitudes maliciosas antes de que lleguen a la aplicación web**.  
-
+✔ **Creado una imagen Docker con Apache seguro y listo para desplegar en cualquier entorno**.
+ 
 🔹 **Recomendaciones adicionales:**
 - **Ajustar las reglas de OWASP CRS** según las necesidades de la aplicación.
 - **Revisar periódicamente los logs de Apache y ModSecurity** para detectar intentos de ataque.
