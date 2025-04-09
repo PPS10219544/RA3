@@ -39,17 +39,18 @@ if (isset($_SESSION['id'])) {
 
 ### 1. Acceder a la interfaz para cambiar el ID
 
-Navega a:
+Hacemos click en el enlace de Change your ID:
+
+![Link_Cambiar_ID](assets/SQL_Clickhere.png) 
+
+O Navegamos a esta dirección:
 
 ```
 http://127.0.0.1/dvwa/vulnerabilities/sqli/session-input.php
 ```
-
-![Link_Cambiar_ID](assets/SQL_Clickhere.png) 
+![Cuadro_Cambiar_ID](assets/SQL_ChangeID.png) 
 
 Esta página contiene un campo de texto que permite **modificar la variable de sesión `$_SESSION['id']`**.
-
-![Cuadro_Cambiar_ID](assets/SQL_ChangeID.png) 
 
 ---
 
