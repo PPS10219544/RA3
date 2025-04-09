@@ -10,9 +10,9 @@ Extraer los **nombres de usuario y contraseñas** almacenados en la base de dato
 
 ---
 
-## 🫠 Análisis técnico
+## 🕵️ Análisis técnico
 
-### 📂 Código fuente: `high.php`
+### 📂 Recursos: `high.php`
 
 ```php
 if (isset($_SESSION['id'])) {
