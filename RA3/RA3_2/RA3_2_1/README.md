@@ -88,6 +88,6 @@ Este ejercicio está diseñado para realizarse en un entorno de pruebas controla
 
 - 🔗 [DVWA en GitHub](https://github.com/digininja/DVWA)
 - 📖 [OWASP: SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection)
-- ▶️ [Vídeo tutorial utilizado]([https://youtu.be/5bj1pFmyyBA](https://youtu.be/5bj1pFmyyBA?si=8pHCNGf_C2kN-wEX))
+- ▶️ [Vídeo tutorial utilizado](https://youtu.be/5bj1pFmyyBA?si=8pHCNGf_C2kN-wEX)
 - 📘 [Writeup de Aftab Sama sobre SQLi en DVWA](https://aftabsama.com/writeups/dvwa/sql-injection/#security-level-high)
 
