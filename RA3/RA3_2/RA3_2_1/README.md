@@ -31,7 +31,7 @@ if (isset($_SESSION['id'])) {
 
 - La consulta SQL es vulnerable porque el valor de `$_SESSION['id']` **no está escapado ni protegido**.
 - La inyección SQL es posible si conseguimos modificar el valor de esa variable de sesión.
-- El payload que funciona en el nivel **Low** también funciona aquí, como se explica en [Aftab Sama's writeup](https://aftabsama.com/writeups/dvwa/sql-injection/#security-level-high).
+- El payload que funciona en el nivel **Low** también funciona aquí, como se explica tanto en las Ayudas como en [Aftab Sama's writeup](https://aftabsama.com/writeups/dvwa/sql-injection/#security-level-high).
 
 ---
 
