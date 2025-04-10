@@ -16,7 +16,7 @@ Realizar un ataque CSRF para **cambiar la contraseña de un usuario autenticado 
 - No hay validación de origen ni token CSRF.
 - El código fuente `low.php` acepta peticiones GET directamente sin verificar el origen ni incluir ningún token de seguridad.
 - Además, al inspeccionar el botón Test Credentials, se observa un script que abre una ventana con `test_credentials.php`, útil para comprobar si la contraseña ha sido modificada.
-- Usando `Burp Suite`, es posible interceptar y observar una petición GET.
+- Usando **Burp Suite**, es posible interceptar y observar una petición GET.
 
 ### 🛠 Paso a paso
 
