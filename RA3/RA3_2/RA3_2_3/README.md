@@ -18,6 +18,8 @@ Realizar un ataque CSRF para **cambiar la contraseña de un usuario autenticado 
 - Además, al inspeccionar el botón Test Credentials, se observa un script que abre una ventana con `test_credentials.php`, útil para comprobar si la contraseña ha sido modificada.
 - Usando **Burp Suite**, es posible interceptar y observar una petición GET.
 
+---
+
 ### 🛠 Paso a paso
 
 1. Inspeccionamos el elemento desde el apartado de CSRF y vemos que el botón **Test Credentials** ejecuta un script, el cual verifica si la contraseña se ha cambiado correctamente.
@@ -31,10 +33,6 @@ Realizar un ataque CSRF para **cambiar la contraseña de un usuario autenticado 
 3. Cambiamos la contraseña, introduciendo esta dos veces, y damos click en **Change**.
 4. Vemos con la herramienta **Burp Suite** que en la petición GET podemos ver una URL desde donde se puede cambiar la contraseña.
 ```php
-GET /dvwa/vulnerabilities/csrf/?password_new=test&password_conf=test&Change=Change
-```
-
-```html
 GET /dvwa/vulnerabilities/csrf/?password_new=test&password_conf=test&Change=Change
 ```
 
