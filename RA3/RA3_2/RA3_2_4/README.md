@@ -15,7 +15,7 @@ Detectar si los identificadores de sesión generados por la aplicación web son 
 ### 🔍 Análisis
 
 - Al iniciar sesión o actualizar la página, se genera un nuevo ID de sesión (`PHPSESSID`).
-- Este ID es **corto y completamente predecible**, por ejemplo:
+- Este ID es **corto y completamente predecible**, como por ejemplo:
 
 ```
 PHPSESSID = 1
@@ -27,13 +27,13 @@ PHPSESSID = 3
 
 ### 🛠 Paso a paso
 
-1. Iniciar Burp Suite y activar el proxy.
+1. Iniciamos Burp Suite y activamos el proxy.
   
-2. Realizar múltiples inicios de sesión o clickar en `Generate` varias veces y anotar los `PHPSESSID`.
+2. Realizamos múltiples inicios de sesión o clickamos en `Generate` varias veces y nos fijamos en los `PHPSESSID`.
 
 ![WSI_Low](assets/WSI_Low.png) 
 
-3. Observar la cookie `PHPSESSID` en la pestaña **HTTP History**.
+3. Observamos la cookie `PHPSESSID` en la pestaña **HTTP History**.
 
 ![BurpSuite_Peticion](assets/WSI_BurpSuite.png) 
 
