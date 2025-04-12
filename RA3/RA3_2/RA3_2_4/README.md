@@ -67,7 +67,7 @@ dvwaSession=1744451034
 
 ![WSI_Medium](assets/WSI_Medium.png)  
 
-4. Acceder a [epochconverter.com](https://www.epochconverter.com/) para comprobar que coincide con la hora actual en formato UNIX.
+3. Acceder a [epochconverter.com](https://www.epochconverter.com/) para comprobar que coincide con la hora actual en formato UNIX.
 
 ![WSI_EpochConverter](assets/WSI_EpochConverter.png) 
 
