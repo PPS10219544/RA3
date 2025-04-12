@@ -63,15 +63,15 @@ dvwaSession=1744451034
 ### 🛠 Paso a paso
 
 1. Pulsar el botón **Generate** en DVWA dentro del apartado `Weak Session IDs`.
+2. Desde **Inspeccionar elemento** podemos ver el valor de la cookie `dvwaSession`.
 
 ![WSI_Medium](assets/WSI_Medium.png)  
 
-3. Observar en **Burp Suite > Repeater** el valor de la cookie `dvwaSession`.
 4. Acceder a [epochconverter.com](https://www.epochconverter.com/) para comprobar que coincide con la hora actual en formato UNIX.
 
 ![WSI_EpochConverter](assets/WSI_EpochConverter.png) 
 
-5. En **Burp Repeater**, enviamos solicitudes desde el botón `Send` y observamos que el valor de la cookie `dvwaSession` se va ajustando a la hora según **UNIX Epoch time**.
+4. En **Burp Suite > Repeater**, enviamos solicitudes desde el botón `Send` y observamos que el valor de la cookie `dvwaSession` se va ajustando a la hora según **UNIX Epoch time**.
 
 ![WSI_BurpSuite](assets/WSI_BurpSuite.png) 
 
