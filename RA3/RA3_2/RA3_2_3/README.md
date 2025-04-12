@@ -108,7 +108,7 @@ En la siguiente petición vemos como la contraseña es cambiada desde la secció
 
 ![Peticion_CambioPassv2](assets/CSRFM_CambioPass.png)
 
-5. Verifica el cambio con `Test Credentials`.
+5. Verificamos el cambio con `Test Credentials`.
 
 ![TestCredentials](assets/CSRFM_TestCredentials.png)
 
