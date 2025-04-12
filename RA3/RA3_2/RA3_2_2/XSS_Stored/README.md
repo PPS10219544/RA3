@@ -63,7 +63,7 @@ Damos click en **"Sign Guestbook"** y click sobre `test`.
 <a draggable="true" ondragenter="alert(1)" style=display:block>test</a>
 ```
 
-### 6. Una vez copiado, lo mantenemos seleccionado y hacemos **CTRL + U** y tomará el formato adecuado. 
+### 6. Una vez copiado, lo mantenemos seleccionado, realizamos **CTRL + U** y tomará el formato adecuado. 
 
 ![Comando2](assets/XSSS_Comando2.png)
 
