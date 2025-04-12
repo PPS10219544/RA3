@@ -45,7 +45,7 @@ $target = str_replace( array_keys( $substitutions ), $substitutions, $target );
 3. En el **Repeater**, modificamos el parámetro `ip` de este modo:
 
 ```bash
-ip=127.0.0.1%7Cwhoami|hostname|ls&Submit=Submit
+ip=127.0.0.1|whoami|hostname|ls&Submit=Submit
 ```
 Esto inyecta los comandos `whoami`, `hostname` y `ls` a través del operador `|`.
 
