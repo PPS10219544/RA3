@@ -64,7 +64,7 @@ En la pestaña **HTTP History** de Burp Suite, se puede observar que **no se env
 GET /dvwa/vulnerabilities/xss_d/ HTTP/1.1
 ```
 
-![BurpResultado](assets/XSSD_BurpResultado.png) 
+![BurpResultado](assets/XXSD_BurpResultado.png) 
 
 El payload está **en el fragmento de la URL** (`#`), y no es enviado en la petición HTTP, lo cual es característico de los ataques DOM-Based.
 
