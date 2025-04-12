@@ -28,7 +28,12 @@ El ataque **Reflected XSS** ocurre cuando los datos enviados por el usuario (por
 
 ## 🛠 Paso a paso para explotar (High Level)
 
-### 1. Búsqueda del payload necesario para su ejecución.
+### 1. Accedemos al módulo:
+```
+http://127.0.0.1/dvwa/vulnerabilities/xss_r/
+```
+
+### 2. Búsqueda del payload necesario para su ejecución.
 
 Accedemos a la **Cheat Sheet sheet de PortSwigger**: 
 
@@ -38,7 +43,7 @@ Y filtramos por `img`, `All events` y `Firefox`.
 
 ![CheatSheet](assets/XSSR_CheatSheet.png) 
 
-### 2. Introducimos el payload adecuado en el campo de entrada `name`:
+### 3. Introducimos el payload adecuado en el campo de entrada `name`:
 
 ```html
 <img src/onerror=alert(1)>
@@ -51,7 +56,7 @@ http://127.0.0.1/dvwa/vulnerabilities/xss_r/?name=<img src/onerror=alert(1)>
 ```
 ![Resultado1](assets/XSSR_Resultado1.png) 
 
-### 3. Alternativa avanzada para ver cookies de inicio de sesión:
+### 4. Alternativa avanzada para ver cookies de inicio de sesión:
 
 ```html
 <img src/onerror=alert(document.cookie)>
