@@ -65,11 +65,10 @@ Damos click en **"Sign Guestbook"** y click sobre `test`.
 
 ### 6. Una vez copiado, lo mantenemos seleccionado, ejecutamos **CTRL + U** y tomará el formato adecuado. 
 
+### 7. Una vez añadido el nuevo payload, lo mandamos haciendo click en `Send`.
 ![Comando2](assets/XSSS_Comando2.png)
 
-Una vez añadido el nuevo payload, lo mandamos haciendo click en `Send`.
-
-### 7. Accedemos de nuevo al módulo y vemos que hay una nueva salida.
+### 8. Accedemos de nuevo al módulo y vemos que hay una nueva salida.
 Arrastramos el texto `test` por la pantalla y salta la alerta.
 ![Resultado2](assets/XSSS_Resultado2.png)
 
