@@ -28,15 +28,19 @@ PHPSESSID = 3
 ### 🛠 Paso a paso
 
 1. Iniciar Burp Suite y activar el proxy.
-2. Iniciar sesión con cualquier usuario en DVWA en el nivel `Low`.
-3. Observar la cookie `PHPSESSID` en la pestaña **HTTP History**.
-4. Realizar múltiples inicios de sesión desde distintos navegadores o sesiones y anotar los `PHPSESSID`.
+  
+2. Realizar múltiples inicios de sesión o clickar en `Generate` varias veces y anotar los `PHPSESSID`.
 
 ![WSI_Low](assets/WSI_Low.png) 
 
-6. Comprobamos que siguen un patrón predecible y se va incrementa el ID en 1.
+3. Observar la cookie `PHPSESSID` en la pestaña **HTTP History**.
+
+![BurpSuite_Peticion](assets/WSI_BurpSuite.png) 
+
+4. Comprobamos que siguen un patrón predecible y se va incrementa el ID en 1.
 
 ![WSI_Lowv2](assets/WSI_Lowv2.png) 
+
 
 ✅ **Conclusión:** el atacante podría predecir un valor de sesión válido y usarlo para secuestrar la sesión de otro usuario.
 
