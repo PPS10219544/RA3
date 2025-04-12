@@ -98,7 +98,7 @@ Sin embargo, la salida no es la esperada, ya que no se modifica la contraseña d
 <img src="/dvwa/vulnerabilities/csrf/?password_new=test123&password_conf=test123&Change=Change">
 ```
 
-![CambioMaxLength_Comando](assets/CSRFM_MaxLengthComando.png)
+![CambioMaxLength_Comando](assets/CSRFM_MaxLengComando.png)
 
 4. El administrador, al visitar la sección del libro de visitas (`XSS Stored`), ejecutará la petición hacia la ruta CSRF. El referer será el propio DVWA, por lo tanto, **el filtro de origen en Medium no bloqueará la petición**.
 
