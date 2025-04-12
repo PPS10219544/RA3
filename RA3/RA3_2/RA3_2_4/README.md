@@ -50,22 +50,32 @@ PHPSESSID = 3
 
 ### 🔍 Análisis
 
-- En este nivel, los valores de `PHPSESSID` ya no son números secuenciales simples.
-- Aunque son **más largos y menos evidentes**, siguen sin ser generados con un nivel de entropía suficientemente alto.
-- No hay regeneración de ID tras iniciar sesión, lo que permite ataques de **session fixation**.
+- En este nivel, el identificador vulnerable no es `PHPSESSID`, sino una cookie llamada `dvwaSession`.
+- Este valor es generado a partir del **epoch time** (timestamp UNIX actual), como puede comprobarse en herramientas como [EpochConverter](https://www.epochconverter.com/).
+- Cada vez que se pulsa "Generate", se asigna un nuevo `dvwaSession` con la hora actual en segundos:
+
+```
+dvwaSession=1744451034
+```
+
+- Esto hace que el valor sea **altamente predecible** si el atacante conoce el instante aproximado en que fue generado.
 
 ### 🛠 Paso a paso
 
-1. Iniciar sesión con un usuario y capturar el valor de la cookie `PHPSESSID`.
-2. Cerrar sesión y volver a iniciar, comprobando si el nuevo ID sigue un patrón reconocible.
-3. Enviar manualmente una cookie con un `PHPSESSID` predecible para simular un intento de secuestro de sesión.
+1. Pulsar el botón **Generate** en DVWA dentro del apartado `Weak Session IDs`.
 
-Ejemplo de cookie:
-```
-Cookie: PHPSESSID=abc123
-```
+![WSI_Medium](assets/WSI_Medium.png)  
 
-✅ **Conclusión:** aunque más difícil que en `Low`, sigue siendo vulnerable a ataques si el atacante puede predecir o fijar la sesión.
+3. Observar en **Burp Suite > Repeater** el valor de la cookie `dvwaSession`.
+4. Acceder a [epochconverter.com](https://www.epochconverter.com/) para comprobar que coincide con la hora actual en formato UNIX.
+
+![WSI_EpochConverter](assets/WSI_EpochConverter.png) 
+
+5. En **Burp Repeater**, enviamos solicitudes desde el botón `Send` y observamos que el valor de la cookie `dvwaSession` se va ajustando a la hora según **UNIX Epoch time**.
+
+![WSI_BurpSuite](assets/WSI_BurpSuite.png) 
+
+✅ **Conclusión:** aunque no es secuencial como en `Low`, el uso del tiempo como identificador sigue siendo predecible y vulnerable.
 
 ---
 
@@ -78,6 +88,7 @@ Cookie: PHPSESSID=abc123
   - `Secure`
   - `SameSite=Strict`
 - Aplicar tiempo de expiración a las sesiones.
+- Evitar valores basados en fecha/hora o secuencias simples como ID de sesión.
 
 ---
 
