@@ -39,15 +39,16 @@ Accedemos a la **Cheat Sheet sheet de PortSwigger**:
 
 Y filtramos por `a`, `All events` y `Firefox`.
 
+Este payload nos permite ejecutar una alerta cuando el usuario hace click sobre el texto.
 ![CheatSheet1](assets/XSSS_CheatSheet1.png) 
 
+Este nuevo payload, lanza un alert cuando se arrastra el texto `test` a otro lugar. 
 ![CheatSheet2](assets/XSSS_CheatSheet2.png)
 
 ### 3. Introducimos un payload XSS alternativo evadiendo filtros:
 ```html
 <a onclick="alert(1)" style=display:block>test</a>
 ```
-Este payload nos permite ejecutar una alerta cuando el usuario hace click sobre el texto.
 ![Comando1](assets/XSSS_Comando1.png)
 
 Damos click en **"Sign Guestbook"** y click sobre `test`.
@@ -63,7 +64,7 @@ Damos click en **"Sign Guestbook"** y click sobre `test`.
 ```
 
 ### 6. Una vez copiado, lo mantenemos seleccionado y hacemos **CTRL + U** y tomará el formato adecuado. 
-Este nuevo payload, lanza un alert cuando se arrastra el texto `test` a otro lugar. 
+
 ![Comando2](assets/XSSS_Comando2.png)
 
 Una vez añadido el nuevo payload, lo mandamos haciendo click en `Send`.
