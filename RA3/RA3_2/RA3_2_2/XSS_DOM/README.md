@@ -35,7 +35,7 @@ document.getElementById("default_text").value = default_value;
 
 ## 🛠 Paso a paso para explotar (High Level)
 
-1. Accede al módulo DOM XSS:
+### 1. Accede al módulo DOM XSS:
 ```
 http://127.0.0.1/dvwa/vulnerabilities/xss_d/
 ```
@@ -45,8 +45,6 @@ http://127.0.0.1/dvwa/vulnerabilities/xss_d/
 ```html
 http://127.0.0.1/dvwa/vulnerabilities/xss_d/#?default=<script>alert(document.cookie)</script>
 ```
-
-3. Resultado
 
 Al cargar la página con ese hash fragment (`#?default=`), el navegador ejecutará directamente el script:
 
@@ -58,7 +56,7 @@ alert(document.cookie);
 
 Esto mostrará una alerta con la cookie actual, confirmando que la inyección fue exitosa.
 
-### 4. Confirmación en Burp Suite
+### 3. Confirmación en Burp Suite
 
 En la pestaña **HTTP History** de Burp Suite, se puede observar que **no se envía el script al servidor**, ya que el ataque se ejecuta totalmente en el lado cliente. La URL vista es:
 
