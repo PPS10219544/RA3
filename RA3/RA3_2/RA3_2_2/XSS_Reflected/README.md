@@ -31,7 +31,9 @@ El ataque **Reflected XSS** ocurre cuando los datos enviados por el usuario (por
 ### 1. Búsqueda del payload necesario para su ejecución.
 
 Accedemos a la **Cheat Sheet sheet de PortSwigger**: 
+
 👉 https://portswigger.net/web-security/cross-site-scripting/cheat-sheet 
+
 Y filtramos por `img`, `All events` y `Firefox`.
 
 ![CheatSheet](assets/XSSR_CheatSheet.png) 
