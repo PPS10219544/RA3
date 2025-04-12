@@ -69,7 +69,8 @@ Damos click en **"Sign Guestbook"** y click sobre `test`.
 ![Comando2](assets/XSSS_Comando2.png)
 
 ### 8. Accedemos de nuevo al módulo y vemos que hay una nueva salida.
-Arrastramos el texto `test` por la pantalla y salta la alerta.
+
+### 9. Arrastramos el texto `test` por la pantalla y salta la alerta.
 ![Resultado2](assets/XSSS_Resultado2.png)
 
 ---
