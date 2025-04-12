@@ -39,10 +39,10 @@ Accedemos a la **Cheat Sheet sheet de PortSwigger**:
 
 Y filtramos por `a`, `All events` y `Firefox`.
 
-Este payload nos permite ejecutar una alerta cuando el usuario hace click sobre el texto.
+#### Este payload nos permite ejecutar una alerta cuando el usuario hace click sobre el texto.
 ![CheatSheet1](assets/XSSS_CheatSheet1.png) 
 
-Este nuevo payload, lanza un alert cuando se arrastra el texto `test` a otro lugar. 
+#### Este nuevo payload, lanza un alerta cuando se arrastra el texto `test` a otro lugar. 
 ![CheatSheet2](assets/XSSS_CheatSheet2.png)
 
 ### 3. Introducimos un payload XSS alternativo evadiendo filtros:
