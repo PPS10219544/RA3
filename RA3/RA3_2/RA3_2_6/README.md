@@ -34,22 +34,22 @@ $target = str_replace( array_keys( $substitutions ), $substitutions, $target );
 
 ## 🛠 Paso a paso para explotar (High Level)
 
-1. Escribimos la dirección IP de localhost `127.0.0.1` y le damos a `Submit`.
+### 1. Escribimos la dirección IP de localhost `127.0.0.1` y le damos a `Submit`.
 
 ![Ping_127.0.0.1](assets/CI_Ping.png) 
 
-2. Accedemos a la petición generada en el **Burp Suite** y mandamos esta petición al **Repeater**
+### 2. Accedemos a la petición generada en el **Burp Suite** y mandamos esta petición al **Repeater**
 
 ![BurpSuite_Repeater](assets/CI_BurpSuite.png) 
 
-3. En el **Repeater**, modificamos el parámetro `ip` de este modo:
+### 3. En el **Repeater**, modificamos el parámetro `ip` de este modo:
 
 ```bash
 ip=127.0.0.1|whoami|hostname|ls&Submit=Submit
 ```
 Esto inyecta los comandos `whoami`, `hostname` y `ls` a través del operador `|`.
 
-4. Mandamos la petición desde el botón `Send` y observamos que se han listado archivos o rutas como:
+### 4. Mandamos la petición desde el botón `Send` y observamos que se han listado archivos o rutas como:
 ```
 help
 index.php
@@ -58,12 +58,12 @@ source
 
 ![Repeater_Comando](assets/CI_RepeaterComando.png) 
 
-5. Desde la respuesta en Burp, hacemos clic derecho ➜ **Show response in browser** y copiamos la URL en el navegador.
+### 5. Desde la respuesta en Burp, hacemos clic derecho ➜ **Show response in browser** y copiamos la URL en el navegador.
 ```
 http://burpsuite/show/9/tmvb3too00ggczu5xefnohefoo9gkgiz
 ```
 
-6. Lo pegamos en el navegador y vemos directamente la salida de los comandos inyectados.
+### 6. Lo pegamos en el navegador y vemos directamente la salida de los comandos inyectados.
 
 ![Resultado](assets/CI_Resultado.png) 
 
