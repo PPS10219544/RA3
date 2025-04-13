@@ -46,6 +46,7 @@ Cookie: PHPSESSID=ch2enjq8o0mv2pgqdiiqj93ed2; security=high
 
 ### 6. Modificamos el ID del usuario.
    - En la pestaña **Repeater**, modificamos el valor del parámetro `"id"` a `1`, que corresponde al usuario *admin*:
+
      ```json
      {
        "id": 1,
