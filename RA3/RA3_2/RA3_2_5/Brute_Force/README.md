@@ -41,8 +41,8 @@ Este token cambia con cada intento, por lo que debe ser dinámicamente actualiza
 
 ### 6. Configuración del **Payload 2**: 
  - Tipo de payload: **Recursive grep**.
- ![Payload2](assets/BF_Payload2.png)
- - Accedemos al apartado de **Settings**.
+ ![Payload2](assets/BF_Payload2.png) 
+  - Accedemos al apartado de **Settings**.
 
 #### **Configuración de Grep - Match**
   - Click en `Clear`, eliminamos todos los filtros.
