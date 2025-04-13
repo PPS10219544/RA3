@@ -12,7 +12,7 @@ Modificar la información de otro usuario sin contar con privilegios administrat
 
 ## 🔧 Paso a paso para explotar
 
-### 1. Acceder al módulo **Authorization Bypass**
+### 1. Acceder al módulo **Authorization Bypass** con un usuario sin privilegios `gordonb / abc123`.
 ```
 http://127.0.0.1/dvwa/vulnerabilities/authbypass/
 ```
