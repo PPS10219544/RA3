@@ -1,6 +1,6 @@
-# 🔓 DVWA - Brute Force (Nivel High)
+# 🔓 DVWA - Brute Force (High Level)
 
-Este documento detalla el proceso de explotación de la vulnerabilidad **Brute Force** en el nivel de seguridad **High** dentro de **DVWA (Damn Vulnerable Web Application)**. Esta práctica demuestra cómo un atacante puede automatizar intentos de acceso con múltiples contraseñas usando Burp Suite.
+En este repositorio se detalla el proceso de explotación de la vulnerabilidad **Brute Force** en el nivel de seguridad **High** dentro de **DVWA (Damn Vulnerable Web Application)**. Esta práctica demuestra cómo un atacante puede automatizar intentos de acceso con múltiples contraseñas usando Burp Suite.
 
 ---
 
@@ -18,7 +18,6 @@ http://127.0.0.1/dvwa/vulnerabilities/brute/
 ```
 
 ### 2. Iniciamos sesión con el usuario `admin` y la contraseña `password`.
-
 ![IniciarSesion](assets/BF_IniciarSesion.png) 
 
 ### 3. Accedemos al **Burp Suite**, seleccionamos la petición del log in y la mandamos al **Intruder**.
@@ -33,29 +32,46 @@ Este token cambia con cada intento, por lo que debe ser dinámicamente actualiza
  - Cambiamos el valor de la `password` y marcamos este y el valor de `user_token` con `§`.
 
 ### 5. Configuración del **Payload 1**:
- - Tipo de payload: **Simple list**
+ - Tipo de payload: **Simple list**.
  - Click en `Load...` y cargamos el fichero *darkweb2017-top100.txt*, el cual contiene 100 contraseñas.
-
 ![Payload1](assets/BF_Payload1.png) 
 
 ### 6. Configuración del **Payload 2**:
+ - Tipo de payload: **Recursive grep**.
+ ![Payload2](assets/BF_Payload2.png)
+ - Accedemos al apartado de **Settings**.
 
-   - Para el `user_token`, usamos la opción **Grep - Extract** para actualizarlo dinámicamente.
+#### **Configuración de Grep - Match**
+  - Click en `Clear`, eliminamos todos los filtros.
+  ![ClearMatch](assets/BF_ClearMatch.png)
+  - Añadimos la opción **incorrect**, para distinguir respuestas erróneas, y damos click en `Add`.
+  ![AddMatch](assets/BF_AddMatch.png)
 
-### 6. **Configuración de Grep - Match y Extract**
-   - En **Grep - Match**, eliminamos todos los filtros y añadimos el texto `incorrect` para distinguir respuestas erróneas.
-   - En **Grep - Extract**, añadimos:
-     - Inicio tras `value='`
-     - Longitud fija: 32 caracteres (hash del `user_token`)
+#### **Configuración de Grep - Extract**
+  - Click en `Add`.
+  ![Extract1](assets/BF_Extract1.png) 
+  
+  - Bajamos en el código, hasta que encontramos el valor del `user_token` y lo seleccionamos.
+  - Cambiamos ambas opciones a `Start at offset: 3387` y `End at fixed length: 32`.
+  ![Extract2](assets/BF_Extract2.png) 
 
-### 7. **Configuración de redirecciones**
-   - En la pestaña **Redirections**, activamos `Always` para seguir redirecciones automáticamente.
+#### **Configuración de Redirections**
+   - Activamos `Always` para seguir redirecciones automáticamente.
 
-### 8. **Ejecución del ataque**
-   - Pulsamos **Start Attack**.
-   - En la tabla de resultados, se detecta el intento exitoso porque:
-     - El campo `incorrect` está vacío.
-     - El contenido de la respuesta cambia e incluye la ruta `/dvwa/hackable/users/admin.jpg`.
+### 7. Lanzamos el ataque haciendo click en **Start Attack**.
+
+### 8. **Visualización del ataque - Request**
+ - **Payload 1** contiene contraseñas de prueba.
+ - **Payload 2** contiene los tokens `user_token` generados dinámicamente en cada intento.
+ - El request nº 4 destaca porque no contiene el texto *incorrect*, y el tamaño de la respuesta es mayor (4894). Esto indica un **login exitoso**.
+ - El token válido en ese intento fue `f144c53be82cf5fcf6bf6db0bec02519`.
+  ![AttackRequest](assets/BF_AttackRequest.png)
+
+### 9. **Visualización del ataque - Response**
+ - El código HTML renderiza el mensaje: “*Welcome to the password protected area admin*”.
+ - También se carga la imagen: `dvwa/hackable/users/admin.jpg`.
+ - Esto valida que la combinación `admin:password` fue aceptada y el token utilizado era correcto.
+  ![AttackResponse](assets/BF_AttackResponse.png)
 
 ---
 
