@@ -1,12 +1,12 @@
-# RA3
+# 📁 RA3
 
-Exploration of the ...
+Exploración de diversos aspectos clave de la **seguridad informática**, centrados en el endurecimiento de servidores, seguridad en aplicaciones web, y análisis mediante herramientas como **DVWA** y **Burp Suite**.
 
-Includes the following:
-* [RA3_1](RA3/RA3_1):
-* [RA3_2](RA3/RA3_2):
-* [RA3_3](RA3/RA3_3):
-* [RA3_4](RA3/RA3_4):
+Incluye los siguientes apartados:
+* [RA3_1](RA3/RA3_1): Server Hardening.
+* [RA3_2](RA3/RA3_2): DVWA.
+* [RA3_3](RA3/RA3_3): SQL Injection.
+* [RA3_4](RA3/RA3_4): Burp Suite (Server & Client Side).
 
 ```
 .
