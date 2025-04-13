@@ -18,7 +18,7 @@ http://127.0.0.1/dvwa/vulnerabilities/brute/
 ```
 
 ### 2. Iniciamos sesión con el usuario `admin` y la contraseña `password`.
-![IniciarSesion](assets/BF_IniciarSesion.png) 
+![InicioSesion](assets/BF_InicioSesion.png) 
 
 ### 3. Accedemos al **Burp Suite**, seleccionamos la petición del log in y la mandamos al **Intruder**.
 ```
