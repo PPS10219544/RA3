@@ -22,31 +22,31 @@ Realizar un ataque CSRF para **cambiar la contraseña de un usuario autenticado 
 
 ### 🛠 Paso a paso
 
-1. Inspeccionamos el elemento desde el apartado de CSRF y vemos que el botón **Test Credentials** ejecuta un script, el cual verifica si la contraseña se ha cambiado correctamente.
+#### 1. Inspeccionamos el elemento desde el apartado de CSRF y vemos que el botón **Test Credentials** ejecuta un script, el cual verifica si la contraseña se ha cambiado correctamente.
 
 ![Inspeccionar_Elemento](assets/CSRFL_Inspeccionar.png) 
    
-2. Damos click en **Test Credentials** y vemos que podemos comprobar la contraseña del usuario *admin* y su contraseña por defecto *password*.
+#### 2. Damos click en **Test Credentials** y vemos que podemos comprobar la contraseña del usuario *admin* y su contraseña por defecto *password*.
 
 ![Test_Credentials](assets/CSRFL_TestCredentials.png) 
 
-3. Cambiamos la contraseña, introduciendo esta dos veces, y damos click en **Change**.
-4. Vemos con la herramienta **Burp Suite** que en la petición GET podemos ver una URL desde donde se puede cambiar la contraseña.
+#### 3. Cambiamos la contraseña, introduciendo esta dos veces, y damos click en **Change**.
+#### 4. Vemos con la herramienta **Burp Suite** que en la petición GET podemos ver una URL desde donde se puede cambiar la contraseña.
 ```php
 GET /dvwa/vulnerabilities/csrf/?password_new=test&password_conf=test&Change=Change
 ```
 
 ![Cambio_contraseña](assets/CSRFL_GETChange.png) 
 
-5. Copiamos esta URL y la pegamos sobre nuestro navegador.
+#### 5. Copiamos esta URL y la pegamos sobre nuestro navegador.
 
 ![Copiar_URL](assets/CSRFL_URL.png) 
 
-6. Realizamos cambios de la contraseña a *test123* desde la URL.
+#### 6. Realizamos cambios de la contraseña a *test123* desde la URL.
 
 ![Cambiar_contraseña_URL](assets/CSRFL_URLv2.png) 
 
-7. Comprobamos que esta contraseña ha sido cambiada al haber modificado la URL y accedido al sitio web.
+#### 7. Comprobamos que esta contraseña ha sido cambiada al haber modificado la URL y accedido al sitio web.
 
 ![Comprobar_contraseña](assets/CSRFL_test123.png) 
 
@@ -63,7 +63,7 @@ GET /dvwa/vulnerabilities/csrf/?password_new=test&password_conf=test&Change=Chan
 
 ### 🛠 Paso a paso (XSS + CSRF combinados)
 
-1. Creamos el archivo `exploit.html` con el siguiente contenido:
+#### 1. Creamos el archivo `exploit.html` con el siguiente contenido:
 
 ```html
 <html>
@@ -82,7 +82,7 @@ GET /dvwa/vulnerabilities/csrf/?password_new=test&password_conf=test&Change=Chan
 </html>
 ```
 
-2. Intentamos ejecutar este exploit en el Navegador firefox.
+#### 2. Intentamos ejecutar este exploit en el Navegador firefox.
 
 ```html
 firefox exploit.html
@@ -92,7 +92,7 @@ Sin embargo, la salida no es la esperada, ya que no se modifica la contraseña d
 
 ![Post_Exploit](assets/CSRFM_PostExploit.png)
 
-3. Ahora bajamos la seguridad a *Low* de nuevo, accedemos al apartado **XSS (Stored)** e inspeccionamos esta página, donde aumentaremos el valor de `MaxLength` a 250 para poder introducir el siguiente código en la sección *message*:
+#### 3. Ahora bajamos la seguridad a *Low* de nuevo, accedemos al apartado **XSS (Stored)** e inspeccionamos esta página, donde aumentaremos el valor de `MaxLength` a 250 para poder introducir el siguiente código en la sección *message*:
 
 ```html
 <img src="/dvwa/vulnerabilities/csrf/?password_new=test123&password_conf=test123&Change=Change">
@@ -100,7 +100,7 @@ Sin embargo, la salida no es la esperada, ya que no se modifica la contraseña d
 
 ![CambioMaxLength_Comando](assets/CSRFM_MaxLengComando.png)
 
-4. El administrador, al visitar la sección del libro de visitas (`XSS Stored`), ejecutará la petición hacia la ruta CSRF. El referer será el propio DVWA, por lo tanto, **el filtro de origen en Medium no bloqueará la petición**.
+#### 4. El administrador, al visitar la sección del libro de visitas (`XSS Stored`), ejecutará la petición hacia la ruta CSRF. El referer será el propio DVWA, por lo tanto, **el filtro de origen en Medium no bloqueará la petición**.
 
 ![Peticion_CambioPass](assets/CSRFM_PeticionCambioPass.png)
 
@@ -108,7 +108,7 @@ En la siguiente petición vemos como la contraseña es cambiada desde la secció
 
 ![Peticion_CambioPassv2](assets/CSRFM_CambioPass.png)
 
-5. Verificamos el cambio con `Test Credentials`.
+#### 5. Verificamos el cambio con `Test Credentials`.
 
 ![TestCredentials](assets/CSRFM_TestCredentials.png)
 
