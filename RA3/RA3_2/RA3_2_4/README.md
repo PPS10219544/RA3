@@ -27,17 +27,17 @@ PHPSESSID = 3
 
 ### 🛠 Paso a paso
 
-1. Iniciamos Burp Suite y activamos el proxy.
+#### 1. Iniciamos Burp Suite y activamos el proxy.
   
-2. Realizamos múltiples inicios de sesión o clickamos en `Generate` varias veces y nos fijamos en los `PHPSESSID`.
+#### 2. Realizamos múltiples inicios de sesión o clickamos en `Generate` varias veces y nos fijamos en los `PHPSESSID`.
 
 ![WSI_Low](assets/WSI_Low.png) 
 
-3. Observamos la cookie `PHPSESSID` en la pestaña **HTTP History**.
+#### 3. Observamos la cookie `PHPSESSID` en la pestaña **HTTP History**.
 
 ![BurpSuite_Peticion](assets/WSI_BurpSuite.png) 
 
-4. Comprobamos que siguen un patrón predecible y se va incrementa el ID en 1.
+#### 4. Comprobamos que siguen un patrón predecible y se va incrementa el ID en 1.
 
 ![WSI_Lowv2](assets/WSI_Lowv2.png) 
 
@@ -62,16 +62,16 @@ dvwaSession=1744451034
 
 ### 🛠 Paso a paso
 
-1. Pulsar el botón **Generate** en DVWA dentro del apartado `Weak Session IDs`.
-2. Desde **Inspeccionar elemento** podemos ver el valor de la cookie `dvwaSession`.
+#### 1. Pulsar el botón **Generate** en DVWA dentro del apartado `Weak Session IDs`.
+#### 2. Desde **Inspeccionar elemento** podemos ver el valor de la cookie `dvwaSession`.
 
 ![WSI_Medium](assets/WSI_Medium.png)  
 
-3. Acceder a [epochconverter.com](https://www.epochconverter.com/) para comprobar que coincide con la hora actual en formato UNIX.
+#### 3. Acceder a [epochconverter.com](https://www.epochconverter.com/) para comprobar que coincide con la hora actual en formato UNIX.
 
 ![WSI_EpochConverter](assets/WSI_EpochConverter.png) 
 
-4. En **Burp Suite > Repeater**, enviamos solicitudes desde el botón `Send` y observamos que el valor de la cookie `dvwaSession` se va ajustando a la hora según **UNIX Epoch time**.
+#### 4. En **Burp Suite > Repeater**, enviamos solicitudes desde el botón `Send` y observamos que el valor de la cookie `dvwaSession` se va ajustando a la hora según **UNIX Epoch time**.
 
 ![WSI_BurpSuite](assets/WSI_BurpSuite.png) 
 
