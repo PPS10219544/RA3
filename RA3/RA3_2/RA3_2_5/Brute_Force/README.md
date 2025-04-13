@@ -78,12 +78,14 @@ Este token cambia con cada intento, por lo que debe ser dinámicamente actualiza
  - **Payload 2** contiene los tokens `user_token` generados dinámicamente en cada intento.
  - El request nº 4 destaca porque no contiene el texto *incorrect*, y el tamaño de la respuesta es mayor (4894). Esto indica un **login exitoso**.
  - El token válido en ese intento fue `f144c53be82cf5fcf6bf6db0bec02519`.
+
   ![AttackRequest](assets/BF_AttackRequest.png)
 
 ### 9. **Visualización del ataque - Response**
  - El código HTML renderiza el mensaje: “*Welcome to the password protected area admin*”.
  - También se carga la imagen: `dvwa/hackable/users/admin.jpg`.
  - Esto valida que la combinación `admin:password` fue aceptada y el token utilizado era correcto.
+
   ![AttackResponse](assets/BF_AttackResponse.png)
 
 ---
