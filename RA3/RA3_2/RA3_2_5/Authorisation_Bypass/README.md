@@ -60,6 +60,7 @@ Cookie: PHPSESSID=ch2enjq8o0mv2pgqdiiqj93ed2; security=high
 ### 7. **Enviamos la solicitud con sesión estándar**
    - Nos aseguramos de que la cookie usada es la copiada anteriormente del nivel **High**.
    - Hacemos clic en **Send** y verificamos que la respuesta incluye:
+
      ```json
      {"result":"ok"}
      ```
