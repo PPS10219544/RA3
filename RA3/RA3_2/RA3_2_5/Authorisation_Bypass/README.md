@@ -38,6 +38,7 @@ Cookie: PHPSESSID=ch2enjq8o0mv2pgqdiiqj93ed2; security=high
 
 ### 5. Sustituimos la línea entera de las **Cookie**, por la copiada anteriormente.
    - Hacemos clic en **Send** y verificamos que la respuesta incluya:
+
      ```json
      {"result":"ok"}
      ``` 
