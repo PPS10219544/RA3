@@ -65,6 +65,7 @@ Este token cambia con cada intento, por lo que debe ser dinámicamente actualiza
   
   - Bajamos en el código, hasta que encontramos el valor del `user_token` y lo seleccionamos.
   - Cambiamos ambas opciones a `Start at offset: 3387` y `End at fixed length: 32`.
+
   ![Extract2](assets/BF_Extract2.png) 
 
 #### **Configuración de Redirections**
