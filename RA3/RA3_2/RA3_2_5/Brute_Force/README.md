@@ -47,14 +47,20 @@ Este token cambia con cada intento, por lo que debe ser dinámicamente actualiza
  
   - Accedemos al apartado de **Settings**.
 
-#### **Configuración de Grep - Match**
+#### **Configuración de Grep - Match** 
+
   - Click en `Clear`, eliminamos todos los filtros.
-  ![ClearMatch](assets/BF_ClearMatch.png)
+
+  ![ClearMatch](assets/BF_ClearMatch.png) 
+  
   - Añadimos la opción **incorrect**, para distinguir respuestas erróneas, y damos click en `Add`.
+
   ![AddMatch](assets/BF_AddMatch.png)
 
-#### **Configuración de Grep - Extract**
+#### **Configuración de Grep - Extract** 
+
   - Click en `Add`.
+
   ![Extract1](assets/BF_Extract1.png) 
   
   - Bajamos en el código, hasta que encontramos el valor del `user_token` y lo seleccionamos.
