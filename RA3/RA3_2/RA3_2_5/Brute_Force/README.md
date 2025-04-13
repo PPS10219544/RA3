@@ -17,7 +17,8 @@ Explotar la funcionalidad de login para obtener acceso no autorizado a una cuent
 http://127.0.0.1/dvwa/vulnerabilities/brute/
 ```
 
-### 2. Iniciamos sesión con el usuario `admin` y la contraseña `password`.
+### 2. Iniciamos sesión con el usuario `admin` y la contraseña `password`. 
+
 ![InicioSesion](assets/BF_InicioSesion.png) 
 
 ### 3. Accedemos al **Burp Suite**, seleccionamos la petición del log in y la mandamos al **Intruder**.
@@ -25,18 +26,20 @@ http://127.0.0.1/dvwa/vulnerabilities/brute/
 GET /dvwa/vulnerabilities/brute/?username=admin&password=password&Login=Login&user_token=TOKEN
 ```
 Este token cambia con cada intento, por lo que debe ser dinámicamente actualizado en cada petición. 
+
 ![BurpSuite](assets/BF_BurpSuite.png) 
 
 ### 4. Accedemos al **Intruder**, y nos disponemos a configurar el **Payload**:
  - Seleccionamos el ataque como **Pitchfork**, es decir, combina los dos payloads en paralelo.
  - Cambiamos el valor de la `password` y marcamos este y el valor de `user_token` con `§`.
 
-### 5. Configuración del **Payload 1**:
+### 5. Configuración del **Payload 1**: 
  - Tipo de payload: **Simple list**.
  - Click en `Load...` y cargamos el fichero *darkweb2017-top100.txt*, el cual contiene 100 contraseñas.
+
 ![Payload1](assets/BF_Payload1.png) 
 
-### 6. Configuración del **Payload 2**:
+### 6. Configuración del **Payload 2**: 
  - Tipo de payload: **Recursive grep**.
  ![Payload2](assets/BF_Payload2.png)
  - Accedemos al apartado de **Settings**.
